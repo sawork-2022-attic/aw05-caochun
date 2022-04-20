@@ -1,6 +1,6 @@
-package com.micropos.products.repository;
+package com.micropos.product.repository;
 
-import com.micropos.products.model.Product;
+import com.micropos.product.model.Product;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

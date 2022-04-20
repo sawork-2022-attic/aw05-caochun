@@ -1,7 +1,7 @@
-package com.micropos.products.mapper;
+package com.micropos.product.mapper;
 
-import com.micropos.products.dto.ProductDto;
-import com.micropos.products.model.Product;
+import com.micropos.product.dto.ProductDto;
+import com.micropos.product.model.Product;
 import org.mapstruct.Mapper;
 
 import java.util.Collection;

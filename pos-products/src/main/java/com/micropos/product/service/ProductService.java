@@ -1,6 +1,6 @@
-package com.micropos.products.service;
+package com.micropos.product.service;
 
-import com.micropos.products.model.Product;
+import com.micropos.product.model.Product;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package com.micropos.products.rest;
+package com.micropos.product.rest;
 
-import com.micropos.products.api.ProductsApi;
-import com.micropos.products.dto.ProductDto;
-import com.micropos.products.mapper.ProductMapper;
-import com.micropos.products.service.ProductService;
+import com.micropos.product.api.ProductsApi;
+import com.micropos.product.dto.ProductDto;
+import com.micropos.product.mapper.ProductMapper;
+import com.micropos.product.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;

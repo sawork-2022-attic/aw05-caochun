@@ -57,8 +57,8 @@
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <configuration>
                     <modelNameSuffix>Dto</modelNameSuffix>
-                    <apiPackage>com.micropos.products.api</apiPackage>
-                    <modelPackage>com.micropos.products.dto</modelPackage>
+                    <apiPackage>com.micropos.product.api</apiPackage>
+                    <modelPackage>com.micropos.product.dto</modelPackage>
                 </configuration>
             </plugin>
         </plugins>

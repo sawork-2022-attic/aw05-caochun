@@ -1,4 +1,4 @@
-package com.micropos.products;
+package com.micropos.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,7 +1,7 @@
-package com.micropos.products.service;
+package com.micropos.product.service;
 
-import com.micropos.products.model.Product;
-import com.micropos.products.repository.ProductRepository;
+import com.micropos.product.model.Product;
+import com.micropos.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
