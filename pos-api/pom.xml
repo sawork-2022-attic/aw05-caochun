@@ -44,7 +44,7 @@
                             </goals>
                             <configuration>
                                 <inputSpec>
-                                    ${project.basedir}/src/openapi.yaml
+                                    ${project.basedir}/src/pos-api.yaml
                                 </inputSpec>
                                 <generatorName>spring</generatorName>
                                 <library>spring-boot</library>
