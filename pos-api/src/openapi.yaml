@@ -2,7 +2,7 @@ openapi: "3.0.0"
 info:
   version: 1.0.0
   title: Swagger Petstore
-  description: Multi-file boilerplate for OpenAPI Specification.
+  description: OpenAPI Specification.
   license:
     name: MIT
   contact:
@@ -22,7 +22,7 @@ paths:
       tags:
         - pets
       parameters:
-        - $ref: "../parameters/query/limit.yaml"
+        - $ref: "#components/parameters/limit"
       responses:
         '200':
           description: A paged array of pets
@@ -34,9 +34,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "../schemas/Pet.yaml"
+                $ref: "#components/schemas/Pet"
         default:
-          $ref: "../responses/UnexpectedError.yaml"
+          $ref: "#components/responses/UnexpectedError"
     post:
       summary: Create
       operationId: createPets
@@ -45,9 +45,9 @@ paths:
         - pets
       responses:
         '201':
-          $ref : "../responses/NullResponse.yaml"
+          $ref : "#components/responses/NullResponse"
         default:
-          $ref : "../responses/UnexpectedError.yaml"
+          $ref : "#components/responses/UnexpectedError"
   /pets/{petId}:
     get:
       summary: Detail
@@ -56,16 +56,16 @@ paths:
       tags:
         - pets
       parameters:
-        - $ref: "../parameters/path/petId.yaml"
+        - $ref: "#components/parameters/petId"
       responses:
         '200':
           description: Expected response to a valid request
           content:
             application/json:
               schema:
-                $ref: "../schemas/Pet.yaml"
+                $ref: "#components/schemas/Pet"
         default:
-          $ref: "../responses/UnexpectedError.yaml"
+          $ref: "#components/responses/UnexpectedError"
 components:
   parameters:
     petId:
@@ -98,5 +98,22 @@ components:
         tag:
           type: string
     Error:
-      $ref: "./Error.yaml"  responses:
-    $ref: ./responses/_index.yaml
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+  responses:
+    NullResponse:
+      description: Null response
+    UnexpectedError:
+      description: unexpected error
+      content:
+        application/json:
+          schema:
+            $ref : "#components/schemas/Error"
