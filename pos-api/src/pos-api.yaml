@@ -1,4 +1,4 @@
-openapi: "3.0.0"
+openapi: "3.0.3"
 info:
   version: 1.0.0
   title: MicroPoS
@@ -100,14 +100,14 @@ components:
     Carts:
       type: array
       items:
-        $ref: "#components/schema/Cart"
+        $ref: "#/components/schema/Cart"
     CartItem:
       type: object
       properties:
         amount:
           type: integer
         product:
-          $ref: "#components/schema/Product"
+          $ref: "#/components/schema/Product"
     Cart:
       type: object
       properties:
@@ -116,7 +116,7 @@ components:
         citems:
           type: array
           items:
-            $ref: "#components/schema/CartItem"
+            $ref: "#/components/schema/CartItem"
     Product:
       type: object
       required:
@@ -128,7 +128,8 @@ components:
         name:
           type: string
         price:
-          type: double
+          type: number
+          format: double
         image:
           type: string
     Products:
@@ -154,4 +155,4 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#components/schemas/Error"
+            $ref: "#/components/schemas/Error"
