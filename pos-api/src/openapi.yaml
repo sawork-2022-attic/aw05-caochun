@@ -1,0 +1,102 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+  description: Multi-file boilerplate for OpenAPI Specification.
+  license:
+    name: MIT
+  contact:
+    name: API Support
+    url: http://www.example.com/support
+    email: support@example.com
+servers:
+  - url: http://petstore.swagger.io/v1
+tags:
+  - name: pets
+paths:
+  /pets:
+    get:
+      summary: List
+      operationId: listPets
+      description: List all pets
+      tags:
+        - pets
+      parameters:
+        - $ref: "../parameters/query/limit.yaml"
+      responses:
+        '200':
+          description: A paged array of pets
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "../schemas/Pet.yaml"
+        default:
+          $ref: "../responses/UnexpectedError.yaml"
+    post:
+      summary: Create
+      operationId: createPets
+      description: Create a pet
+      tags:
+        - pets
+      responses:
+        '201':
+          $ref : "../responses/NullResponse.yaml"
+        default:
+          $ref : "../responses/UnexpectedError.yaml"
+  /pets/{petId}:
+    get:
+      summary: Detail
+      operationId: showPetById
+      description: Info for a specific pet
+      tags:
+        - pets
+      parameters:
+        - $ref: "../parameters/path/petId.yaml"
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "../schemas/Pet.yaml"
+        default:
+          $ref: "../responses/UnexpectedError.yaml"
+components:
+  parameters:
+    petId:
+      name: petId
+      in: path
+      required: true
+      description: The id of the pet to retrieve
+      schema:
+        type: string
+    query:
+      name: limit
+      in: query
+      description: How many items to return at one time (max 100)
+      required: false
+      schema:
+        type: integer
+        format: int32
+  schemas:
+    Pet:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+    Error:
+      $ref: "./Error.yaml"  responses:
+    $ref: ./responses/_index.yaml
