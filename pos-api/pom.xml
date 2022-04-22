@@ -31,37 +31,15 @@
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.openapitools</groupId>
-                    <artifactId>openapi-generator-maven-plugin</artifactId>
-                    <version>5.4.0</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                            <configuration>
-                                <inputSpec>
-                                    ${project.basedir}/src/pos-api.yaml
-                                </inputSpec>
-                                <generatorName>spring</generatorName>
-                                <library>spring-boot</library>
-                                <configOptions>
-                                    <interfaceOnly>true</interfaceOnly>
-                                </configOptions>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <configuration>
+                    <inputSpec>
+                        ${project.basedir}/src/pos-api.yaml
+                    </inputSpec>
                     <modelNameSuffix>Dto</modelNameSuffix>
                     <apiPackage>com.micropos.api</apiPackage>
                     <modelPackage>com.micropos.dto</modelPackage>

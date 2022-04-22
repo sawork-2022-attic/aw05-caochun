@@ -1,9 +1,11 @@
 openapi: "3.0.3"
 info:
-  version: 1.0.0
+  version: 0.0.1
   title: MicroPoS
   license:
     name: MIT
+servers:
+  - url: http://localhost:8080/api
 paths:
   /carts:
     get:
@@ -24,14 +26,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /carts/{cartsId}:
-     get:
+    post:
+      tags:
+        - carts
+      operationId: createCart
+      summary: Create a new cart
+      requestBody:
+        description: An empty cart
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+        required: true
+      responses:
+        201:
+          description: The cart was successfully added.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        400:
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Cart not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /carts/{cartId}:
+    get:
       summary: Info for a specific cart
       operationId: showCartById
       tags:
         - cart
       parameters:
-        - name: cartsId
+        - name: cartId
           in: path
           required: true
           description: The id of the cart to retrieve
@@ -44,6 +83,59 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Cart"
+    post:
+      summary: Add an item to cart
+      operationId: addItemToCart
+      tags:
+        - cart
+      parameters:
+        - name: cartId
+          in: path
+          required: true
+          description: The id of the cart to retrieve
+          schema:
+            type: string
+      requestBody:
+        description: The details of the item.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /carts/{cartId}/total:
+    get:
+      summary: Total for a specific cart
+      operationId: showCartTotal
+      tags:
+        - cart
+      parameters:
+        - name: cartId
+          in: path
+          required: true
+          description: The id of the cart to get total
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                type: number
+                format: double
         default:
           description: unexpected error
           content:
@@ -89,6 +181,33 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Product"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /counter/checkout:
+    get:
+      summary: checkout a cart
+      operationId: checkout
+      tags:
+        - counter
+      requestBody:
+        description: The cart to checkout.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                type: number
+                format: double
         default:
           description: unexpected error
           content:
