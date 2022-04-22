@@ -1,7 +1,7 @@
 package com.micropos.product.rest;
 
-import com.micropos.product.api.ProductsApi;
-import com.micropos.product.dto.ProductDto;
+import com.micropos.api.ProductsApi;
+import com.micropos.dto.ProductDto;
 import com.micropos.product.mapper.ProductMapper;
 import com.micropos.product.service.ProductService;
 import org.springframework.http.HttpStatus;

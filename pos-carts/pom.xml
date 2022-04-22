@@ -16,7 +16,7 @@
         <dependency>
             <groupId>com.micropos</groupId>
             <artifactId>pos-products</artifactId>
-            <version>0.0.1</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

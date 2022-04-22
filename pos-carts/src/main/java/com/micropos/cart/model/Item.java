@@ -1,5 +1,6 @@
 package com.micropos.cart.model;
 
+import com.micropos.dto.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
