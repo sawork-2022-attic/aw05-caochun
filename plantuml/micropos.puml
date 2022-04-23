@@ -17,11 +17,14 @@ Users(sources, "Users", "millions of users")
 APIGateway(gateway, "POS Gateway", "POS Gateway")
 Serverless(counter, "Counter Service", "calculate total")
 BusinessApplications(carts, "Cart Service", "cart Service")
+BusinessApplications(orders, "Order Service", "Order Service")
 BusinessApplications(products, "Product Service", "Product Service")
 
 sources --> gateway
 gateway --> carts
 gateway --> products
+gateway --> orders
 carts --> counter
+carts --> orders
 
 @enduml
