@@ -9,7 +9,7 @@ public class CounterService {
 
     public double getTotal(CartDto cart) {
         double total = 0;
-        for (CartItemDto item : cart.getCitems()) {
+        for (CartItemDto item : cart.getItems()) {
             total += item.getAmount() * item.getProduct().getPrice();
         }
         return total;

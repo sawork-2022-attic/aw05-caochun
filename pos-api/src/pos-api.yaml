@@ -75,7 +75,8 @@ paths:
           required: true
           description: The id of the cart to retrieve
           schema:
-            type: string
+            type: integer
+            format: int32
       responses:
         '200':
           description: Expected response to a valid request
@@ -94,7 +95,8 @@ paths:
           required: true
           description: The id of the cart to retrieve
           schema:
-            type: string
+            type: integer
+            format: int32
       requestBody:
         description: The details of the item.
         content:
@@ -127,7 +129,8 @@ paths:
           required: true
           description: The id of the cart to get total
           schema:
-            type: string
+            type: integer
+            format: int32
       responses:
         '200':
           description: Expected response to a valid request
@@ -223,16 +226,21 @@ components:
     CartItem:
       type: object
       properties:
+        id:
+          type: integer
+          format: int32
         amount:
           type: integer
+          format: int32
         product:
           $ref: "#/components/schema/Product"
     Cart:
       type: object
       properties:
         id:
-          type: string
-        citems:
+          type: integer
+          format: int32
+        items:
           type: array
           items:
             $ref: "#/components/schema/CartItem"
@@ -241,6 +249,7 @@ components:
       required:
         - id
         - name
+        - price
       properties:
         id:
           type: string
