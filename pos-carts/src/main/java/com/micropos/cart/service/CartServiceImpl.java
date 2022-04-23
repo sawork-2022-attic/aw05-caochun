@@ -1,6 +1,8 @@
 package com.micropos.cart.service;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.micropos.cart.mapper.CartMapper;
 import com.micropos.cart.model.Cart;
 import com.micropos.cart.model.Item;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.data.util.Streamable;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,7 +25,7 @@ public class CartServiceImpl implements CartService {
 
     private CartRepository cartRepository;
 
-    private final String COUNTER_URL = "http://pos-counter/checkout";
+    private final String COUNTER_URL = "http://POS-COUNTER/counter/";
 
     private CartMapper cartMapper;
 
@@ -46,9 +50,24 @@ public class CartServiceImpl implements CartService {
     @Override
     public Double checkout(Cart cart) {
         CartDto cartDto = cartMapper.toCartDto(cart);
-        HttpEntity<CartDto> request = new HttpEntity<>(cartDto);
-        Double total = restTemplate.postForObject(COUNTER_URL, request, Double.class);
+        ObjectMapper mapper = new ObjectMapper();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> request = null;
+        try {
+            request = new HttpEntity<>(mapper.writeValueAsString(cartDto), headers);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        Double total = restTemplate.postForObject(COUNTER_URL+ "/checkout", request, Double.class);
         return total;
+    }
+
+    public Integer test() {
+
+        Integer test = restTemplate.getForObject(COUNTER_URL + "/test", Integer.class);
+        return test;
     }
 
     @Override

@@ -21,4 +21,5 @@ public class CounterController implements CounterApi {
     public ResponseEntity<Double> checkout(CartDto cartDto) {
         return ResponseEntity.ok(this.counterService.getTotal(cartDto));
     }
+
 }

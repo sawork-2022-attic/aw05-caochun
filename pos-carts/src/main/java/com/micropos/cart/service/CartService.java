@@ -18,4 +18,5 @@ public interface CartService {
 
     Optional<Cart> getCart(Integer cartId);
 
+    Integer test();
 }

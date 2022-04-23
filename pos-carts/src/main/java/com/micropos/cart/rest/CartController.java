@@ -45,16 +45,16 @@ public class CartController implements CartsApi {
     @Override
     public ResponseEntity<Double> showCartTotal(Integer cartId) {
 
-        Cart cart = new Cart();
-        Item item1 = new Item();
-        item1.productId("a").productName("abc").unitPrice(2).quantity(2);
-        cart.addItem(item1);
-        Item item2 = new Item();
-        item2.productId("b").productName("bcd").unitPrice(3.1).quantity(1);
-        cart.addItem(item2);
+//        Cart cart = new Cart();
+//        Item item1 = new Item();
+//        item1.productId("a").productName("abc").unitPrice(2).quantity(2);
+//        cart.addItem(item1);
+//        Item item2 = new Item();
+//        item2.productId("b").productName("bcd").unitPrice(3.1).quantity(1);
+//        cart.addItem(item2);
+//        Double total = cartService.checkout(cart);
 
-        Double total = cartService.checkout(cart);
-//        Double total = cartService.checkout(cartId);
+        Double total = cartService.checkout(cartId);
 
         if (total == -1d) {
             return ResponseEntity.notFound().build();
